@@ -5,15 +5,16 @@ import FakeBook from '../src/images/FakeBook.png'
 import Posts from './components/Posts/Posts';
 import Form from './components/Form/Form';
 import useStyles from './styles'
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { getPosts } from './actions/posts';
 
 const App = () => {
+    const [currentId,setCurrentId]=useState(null);
     const classes=useStyles();
     const dispatch=useDispatch();
-    useEffect(()=>{
-        dispatch(getPosts);
-    },[dispatch])
+    useEffect(() => {
+        dispatch(getPosts());
+      }, [ dispatch]);
     return (
        <Container maxWidth='lg'>
             <AppBar className={classes.appBar} position="static" color='inherit' >
@@ -24,10 +25,10 @@ const App = () => {
                 <Container>
                     <Grid container justify="space-between" alignItems="stretch" spacing={3}>
                         <Grid item xs={12} sm={7}>
-                            <Posts></Posts>
+                            <Posts setCurrentId={setCurrentId}></Posts>
                         </Grid>
                         <Grid item xs={12} sm={4}>
-                            <Form></Form>
+                            <Form currentId={currentId} setCurrentId={setCurrentId}></Form>
                         </Grid>
                     </Grid>
 
