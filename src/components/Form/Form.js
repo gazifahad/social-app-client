@@ -13,32 +13,39 @@ const Form = ({ currentId, setCurrentId }) => {
     const [postData, setPostData] = useState({
         creator: '', title: '', message: '', tags: '', selectedFile: ''
     });
-    const post = useSelector((state) => currentId ? state.posts.find((p)=> p._id === currentId): null)
-useEffect(()=>{
- if(post) setPostData(post)
-},[post])
+    const post = useSelector((state) => currentId ? state.posts.find((p) => p._id === currentId) : null)
+    useEffect(() => {
+        if (post) setPostData(post)
+    }, [post])
 
     const classes = useStyles();
     const handleSubmit = (event) => {
         event.preventDefault();
+
         if (currentId) {
             dispatch(updatePost(currentId, postData));
+
         }
 
         else {
             dispatch(createPost(postData));
+
         }
 
-
+        clear();
     }
     const clear = () => {
+        setCurrentId(null);
+        setPostData({
+            creator: '', title: '', message: '', tags: '', selectedFile: ''
+        });
 
     }
     return (
         <div>
             <Paper className={classes.paper}>
                 <form autoComplete='off' noValidate className={`${classes.form} ${classes.root}`} onSubmit={handleSubmit}>
-                    <Typography variant='h6'>Creating a new post </Typography>
+                    <Typography variant='h6'>{currentId ? 'editing' : "creating"} a post </Typography>
                     <TextField name='creator' variant='outlined' label="Creator"
                         fullWidth
                         value={postData.creator}
@@ -54,7 +61,7 @@ useEffect(()=>{
                     <TextField name='tags' variant='outlined' label="Tags"
                         fullWidth
                         value={postData.tags}
-                        onChange={(e) => setPostData({ ...postData, tags: e.target.value })} />
+                        onChange={(e) => setPostData({ ...postData, tags: e.target.value.split(',') })} />
                     <div className={classes.fileInput}></div>
                     <FileBase
                         type="file"
