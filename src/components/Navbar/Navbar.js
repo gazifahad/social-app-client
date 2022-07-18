@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 
 import { AppBar, Avatar, Button, Toolbar, Typography } from '@material-ui/core';
-import FakeBook from '../../images/FakeBook.png' ;
+import FakeBook1 from '../../images/name2.png' ;
+
+
 import useStyles from './styles';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -27,13 +29,16 @@ const Navbar = () => {
     setUser(JSON.parse(localStorage.getItem('profile')));
 
 
-  },[navigate])
+  },[navigate,user?.token])
 
     return (
 
         <AppBar className={classes.appBar} position="static" color='inherit' >
             <div className={classes.brandContainer}>
-            <Typography component={Link} to='/' className={classes.heading} variant='h2' align='center'>FakeBook <img className={classes.image} src={FakeBook} height="60" alt="main pic" /></Typography>
+            <Link to={'/'}>
+            <img src={FakeBook1} alt="icon Text" height='45px' />
+            </Link>
+           
             </div>
             <Toolbar className={classes.toolbar}>
                 {

@@ -29,10 +29,7 @@ const Home = () => {
     const navigate=useNavigate();
     const page=query.get('page') || 1;
     const searchQuery=query.get('searchquery');
-    useEffect(() => {
-       
-        dispatch(getPosts());
-      }, [ currentId,dispatch]);
+   
      
       const searchPost=()=>{
         if(search.trim() || tags){
@@ -84,7 +81,7 @@ const Home = () => {
                     </AppBar>
                     <Form currentId={currentId} setCurrentId={setCurrentId}></Form>
                     <Paper elevation={6}>
-                        <Paginate></Paginate>
+                        <Paginate page={page}></Paginate>
 
                     </Paper>
                 </Grid>
