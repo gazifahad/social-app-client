@@ -60,7 +60,7 @@ const Form = ({ currentId, setCurrentId }) => {
                         fullWidth
                         value={postData.title}
                         onChange={(e) => setPostData({ ...postData, title: e.target.value })} />
-                    <TextField name='message' variant='outlined' label="message"
+                    <TextField name='message' variant='outlined' label="Details"
                         fullWidth
                         value={postData.message}
                         onChange={(e) => setPostData({ ...postData, message: e.target.value })} />

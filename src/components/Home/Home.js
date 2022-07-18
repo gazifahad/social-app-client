@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux';
 import {useNavigate,useLocation} from 'react-router-dom'
 import useStyles from './styles'
 import { useEffect, useState } from 'react';
-import { getPosts } from '../../actions/posts';
+import { getPosts,getPostsBySearch } from '../../actions/posts';
 
 import Paginate from './../Pagination';
 import { Container, Grow, Grid, AppBar, TextField, Button, Paper } from '@material-ui/core';
@@ -20,7 +20,7 @@ function useQuery(){
 }
 const Home = () => {
     const [search,setSearch]=useState('');
-    const [tags,setTags]=useState('');
+    const [tags,setTags]=useState([]);
     const [currentId,setCurrentId]=useState(null);
     const classes=useStyles();
     const dispatch=useDispatch();
@@ -33,9 +33,19 @@ const Home = () => {
        
         dispatch(getPosts());
       }, [ currentId,dispatch]);
+     
+      const searchPost=()=>{
+        if(search.trim() || tags){
+           dispatch(getPostsBySearch({search,tags:tags.join(',') })) ;
+           navigate(`/posts/search?searchQuery=${search || 'none'}&tags=${tags.join(',')}`)
+        }
+        else{
+           navigate('/')
+        }
+      }
       const handleKeyPress=(e)=>{
         if(e.keyCode===13){
-            //search post
+            searchPost();
         }
       };
       const handleAdd=(tag)=>
@@ -67,6 +77,8 @@ const Home = () => {
                         label='search by tags'
                         variant='outlined'
                         />
+                        <Button onClick={searchPost} className={classes.searchButton}
+                        variant='contained'>Search</Button>
 
 
                     </AppBar>
