@@ -16,14 +16,14 @@ const App = () => {
            <Navbar/>
            
             <Routes>
-          <Route path='/' element={ <Navigate to="posts" replace /> }>
+          <Route path='/' element={ <Navigate to="posts" /> }>
             
           </Route>
           <Route path='posts' element={<Home/>}/>
           <Route path='posts/search' element={<Home/>}/>
           <Route path='posts/:id' element={<PostDetails/>}/>
          
-          <Route path='/auth' element={!user ? <Auth/> : <Home/>}>
+          <Route path='/auth' element={ <Auth/>}>
           </Route>
           <Route path='*' element={<OtherRoute/>}>
           </Route>

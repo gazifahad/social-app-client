@@ -5,10 +5,12 @@ import FileBase from 'react-file-base64';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createPost, updatePost } from '../../actions/posts';
+import { useNavigate } from 'react-router-dom';
 
 // have to get the id of current post for editing 
 
 const Form = ({ currentId, setCurrentId }) => {
+    const navigate=useNavigate();
     const user=JSON.parse(localStorage.getItem('profile'));
     const dispatch = useDispatch();
     const [postData, setPostData] = useState({
@@ -25,13 +27,13 @@ const Form = ({ currentId, setCurrentId }) => {
 
         if (currentId) {
             
-            dispatch(updatePost(currentId,{...postData,name:user?.result?.name})); 
+            dispatch(updatePost(currentId,{...postData,name:user?.result?.name|| user?.result?.displayName })); 
 
         }
 
         else {
             
-            dispatch(createPost({...postData,name:user?.result?.name}));
+            dispatch(createPost({...postData,name:user?.result?.name || user?.result?.displayName },navigate));
         }
 
         clear();

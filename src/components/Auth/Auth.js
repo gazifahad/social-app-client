@@ -22,7 +22,7 @@ const Auth = () => {
     const dispatch=useDispatch();
    
     const [showPassword,setShowPassword]=useState(false);
-    const [isSignup,setIsSignUp]=useState(true);
+    const [isSignup,setIsSignUp]=useState(false);
     const [formData,setFormData]=useState(initialState)
     const classes = useStyles();
    
@@ -33,10 +33,14 @@ const Auth = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
        if(isSignup){
-            dispatch(signup(formData,navigate))
+      
+        dispatch(signup(formData,navigate));
+            
        }
        else{
+        
         dispatch(signin(formData,navigate))
+        
        }
     };
    const handleGoogleLogin=async(user)=>{
@@ -48,7 +52,7 @@ const Auth = () => {
         const result=  (user?.user);
     
         const token=result?.accessToken;
-        console.log(result);
+        // console.log(result);
        
        try {
           dispatch({type: "AUTH", data: {result,token}});

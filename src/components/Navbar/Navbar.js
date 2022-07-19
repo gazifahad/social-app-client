@@ -33,14 +33,18 @@ const Navbar = () => {
 
     return (
 
-        <AppBar className={classes.appBar} position="static" color='inherit' >
+        <AppBar className={classes.appBar}  position="static" color='inherit' >
             <div className={classes.brandContainer}>
+              
             <Link to={'/'}>
             <img src={FakeBook1} alt="icon Text" height='45px' />
             </Link>
+            
+        
+
            
             </div>
-            <Toolbar className={classes.toolbar}>
+            <Toolbar className={classes.toolbar} >
                 {
                     user ? ( 
                         <div className={classes.profile}>

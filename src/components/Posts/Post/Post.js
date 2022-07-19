@@ -12,7 +12,7 @@ import { CardActions } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { deletePost, likePost } from '../../../actions/posts';
 
-const user=JSON.parse(localStorage.getItem('profile'));
+const user=JSON.parse(localStorage.getItem('profile'))
 
 const Post = ({ post,setCurrentId }) => {
     
@@ -29,6 +29,9 @@ const Post = ({ post,setCurrentId }) => {
             );
             
         }
+        // console.log(post);
+        // console.log(user);
+       
         
     
         return <><ThumbUpAltOutlined fontSize="small" />&nbsp;Like</>;
@@ -41,7 +44,7 @@ const Post = ({ post,setCurrentId }) => {
             <CardMedia className={classes.media} image={post.selectedFile || 'https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png'}
              title={post.title} />
             <div className={classes.overlay}>
-                <Typography variant='h6'>{post.name}</Typography>
+                <Typography variant='h6'>{post.name ? post.name : user?.result?.displayName}</Typography>
                 <Typography variant='body2'>{moment(post.createdAt).fromNow()}</Typography>
 
             </div>

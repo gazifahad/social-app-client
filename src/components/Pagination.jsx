@@ -9,7 +9,7 @@ const Paginate=({page})=>{
     const { numberOfPages } = useSelector((state) => state.posts);
     const classes=useStyles();
     const dispatch=useDispatch();
-    console.log(page);
+    // console.log(page);
      useEffect(()=>{
         
             if(page) dispatch(getPosts(page));

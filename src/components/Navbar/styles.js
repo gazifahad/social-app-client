@@ -10,6 +10,8 @@ export default makeStyles((theme) => ({
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: '10px 50px',
+    flexWrap: 'wrap',
+  
   },
   heading: {
     color: 'rgba(0,183,255, 1)',
@@ -21,12 +23,14 @@ export default makeStyles((theme) => ({
   toolbar: {
     display: 'flex',
     justifyContent: 'flex-end',
-    width: '400px',
+    width: '40%',
+    flexWrap: 'wrap',
   },
   profile: {
     display: 'flex',
     justifyContent: 'space-between',
-    width: '400px',
+    width: '100%',
+    alignItems: 'center'
   },
   userName: {
     display: 'flex',
@@ -34,10 +38,13 @@ export default makeStyles((theme) => ({
   },
   brandContainer: {
     display: 'flex',
+    justifyContent: 'space-between',
     alignItems: 'center',
+   
   },
   purple: {
     color: theme.palette.getContrastText(deepPurple[500]),
     backgroundColor: deepPurple[500],
+   
   },
 }));
