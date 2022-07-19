@@ -10,13 +10,18 @@ import { useNavigate } from 'react-router-dom';
 // have to get the id of current post for editing 
 
 const Form = ({ currentId, setCurrentId }) => {
+    
     const navigate=useNavigate();
     const user=JSON.parse(localStorage.getItem('profile'));
     const dispatch = useDispatch();
     const [postData, setPostData] = useState({
         title: '', message: '', tags: '', selectedFile: ''
     });
-    const post = useSelector((state) => currentId ? state.posts.find((p) => p._id === currentId) : null)
+
+   
+   
+    const post = useSelector((state) => currentId ? state.posts.posts.find((p) => p._id === currentId) : null)
+    // useSelector((state) => console.log(state.posts.posts));
     useEffect(() => {
         if (post) setPostData(post)
     }, [post])
@@ -38,6 +43,11 @@ const Form = ({ currentId, setCurrentId }) => {
 
         clear();
     }
+    const clear = () => {
+        setCurrentId(null);
+        setPostData({
+          title: '', message: '', tags: '', selectedFile: ''
+        });
     if(!user?.result?.name && !user?.result?.displayName){
         return(
           <Paper className={classes.paper}>
@@ -45,11 +55,7 @@ const Form = ({ currentId, setCurrentId }) => {
           </Paper>  
         )
     }
-    const clear = () => {
-        setCurrentId(null);
-        setPostData({
-          title: '', message: '', tags: '', selectedFile: ''
-        });
+  
 
     }
     return (
