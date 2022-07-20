@@ -6,6 +6,7 @@ try {
    const {data}=await api.signIn(formData);
    dispatch({type:AUTH,data});
    navigate('/');
+   window.location.reload();
 } catch (error) {
     console.log(error);
 }
@@ -15,6 +16,7 @@ try {
   const {data}=await api.signUp(formData);
   dispatch({type:AUTH,data})
   navigate('/')
+  
 } catch (error) {
     console.log(error?.response?.data);
 }

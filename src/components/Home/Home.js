@@ -80,10 +80,13 @@ const Home = () => {
 
                     </AppBar>
                     <Form currentId={currentId} setCurrentId={setCurrentId}></Form>
-                    <Paper elevation={6}>
-                        <Paginate page={page}></Paginate>
 
-                    </Paper>
+                    {(!searchQuery && !tags.length) && (<Paper elevation={6} className={classes.pagination}>
+                       
+                       <Paginate page={page}></Paginate>
+
+                   </Paper>) }
+                   
                 </Grid>
             </Grid>
 

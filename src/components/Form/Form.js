@@ -60,9 +60,9 @@ const Form = ({ currentId, setCurrentId }) => {
     }
     return (
         <div>
-            <Paper className={classes.paper}>
+            <Paper className={classes.paper} elevation={6}>
                 <form autoComplete='off' noValidate className={`${classes.form} ${classes.root}`} onSubmit={handleSubmit}>
-                    <Typography variant='h6'>{currentId ? 'editing' : "creating"} a post </Typography>
+                    <Typography variant='h6'>{currentId ? 'Edit' : "Create"} a post </Typography>
                     
                     <TextField name='title' variant='outlined' label="title"
                         fullWidth

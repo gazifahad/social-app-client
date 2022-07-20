@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardActins, CardContent, CardMedia, Button, Typography } from '@material-ui/core';
+import { Card, CardActins, CardContent, CardMedia, Button, Typography,ButtonBase } from '@material-ui/core';
 
 
 import useStyles from './Styles'
@@ -11,10 +11,13 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { CardActions } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { deletePost, likePost } from '../../../actions/posts';
+import { useNavigate } from 'react-router-dom';
+
 
 const user=JSON.parse(localStorage.getItem('profile'))
 
 const Post = ({ post,setCurrentId }) => {
+    const navigate=useNavigate();
     
     const dispatch=useDispatch();
     const classes = useStyles();
@@ -36,11 +39,17 @@ const Post = ({ post,setCurrentId }) => {
     
         return <><ThumbUpAltOutlined fontSize="small" />&nbsp;Like</>;
       };
+      const openPost=()=>{
+      navigate(`/posts/${post._id}`)
+      }
      
     
     
     return (
         <Card className={classes.card} raised elevation={8}>
+            <ButtonBase className={classes.cardAction}
+            onclick={openPost}>
+            
             <CardMedia className={classes.media} image={post.selectedFile || 'https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png'}
              title={post.title} />
             <div className={classes.overlay}>
@@ -72,6 +81,7 @@ const Post = ({ post,setCurrentId }) => {
                 }</Typography>
               
                 </CardContent>
+                </ButtonBase>
                 <CardActions className={classes.cardActions}>
                     <Button size='small' color='primary' 
                     disbaled={`${!user?.result}`}
