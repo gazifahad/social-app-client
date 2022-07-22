@@ -48,6 +48,7 @@ const Form = ({ currentId, setCurrentId }) => {
         setPostData({
           title: '', message: '', tags: '', selectedFile: ''
         });
+    }
     if(!user?.result?.name && !user?.result?.displayName){
         return(
           <Paper className={classes.paper}>
@@ -55,10 +56,9 @@ const Form = ({ currentId, setCurrentId }) => {
           </Paper>  
         )
     }
-  
-
-    }
+   
     return (
+        
         <div>
             <Paper className={classes.paper} elevation={6}>
                 <form autoComplete='off' noValidate className={`${classes.form} ${classes.root}`} onSubmit={handleSubmit}>
@@ -84,8 +84,10 @@ const Form = ({ currentId, setCurrentId }) => {
                     >
 
                     </FileBase>
-                    <Button className={classes.buttonSubmit} variant='contained' color='primary' size='large' type='submit' fullWidth>Submit</Button>
-                    <Button variant='contained' color='secondary' size='small' onClick={clear} fullWidth> Clear</Button>
+                   
+                             <Button className={classes.buttonSubmit} variant='contained' color='primary' size='large' type='submit' fullWidth>Submit</Button>
+                        <Button variant='contained' color='secondary' size='small' onClick={clear} fullWidth> Clear</Button>
+                  
 
                 </form>
 

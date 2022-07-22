@@ -1,10 +1,10 @@
-import { START_LOADING, END_LOADING, FETCH_ALL,FETCH_POST, FETCH_BY_SEARCH, CREATE, UPDATE, DELETE, LIKE } from '../constants/actionTypes';
+import { START_LOADING, END_LOADING, FETCH_ALL,FETCH_POST, FETCH_BY_SEARCH, CREATE, UPDATE, DELETE, LIKE ,COMMENT} from '../constants/actionTypes';
 import * as api from '../api/index.js';
 
 
 
 export const getPost = (id) => async (dispatch) => {
-  console.log(id);
+  // console.log(id);
   try {
     dispatch({ type: START_LOADING });
     const { data } = await api.fetchPost(id);
@@ -47,10 +47,10 @@ export const createPost = (post, navigate) => async (dispatch) => {
   try {
     dispatch({ type: START_LOADING });
     const { data } = await api.createPost(post);
-
+    navigate(`/posts/${data._id}`);
     dispatch({ type: CREATE, payload: data });
-
-    navigate('/');
+    dispatch({ type: END_LOADING });
+    
   } catch (error) {
     console.log(error);
   }
@@ -77,6 +77,20 @@ export const likePost = (id) => async (dispatch) => {
     console.log(error);
   }
 };
+export const commentPost=(value,id)=>async (dispatch)=>{
+
+  try {
+    
+    const {data}=await api.comment(value,id);
+    dispatch({type:COMMENT,payload: data});
+    
+   return data.comments;
+  
+  
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 export const deletePost = (id) => async (dispatch) => {
   try {
