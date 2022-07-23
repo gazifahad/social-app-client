@@ -74,7 +74,7 @@ const Post = ({ post,setCurrentId }) => {
             <CardMedia className={classes.media} image={post.selectedFile || 'https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png'}
              title={post.title} />
             <div className={classes.overlay}>
-                <Typography variant='h6'>{post.name ? post.name : user?.result?.displayName}</Typography>
+                <Typography variant='h6'>{post ? post.name : user?.result?.displayName}</Typography>
                 <Typography variant='body2'>{moment(post.createdAt).fromNow()}</Typography>
 
             </div>
@@ -100,7 +100,7 @@ const Post = ({ post,setCurrentId }) => {
             <Typography className={classes.title} variant='h5' gutterBottom> {
                     post.title
                 }</Typography>
-                <Typography variant='body2' color='secondary' component='p' gutterBottom> {
+                <Typography variant='body2' color='black' component='p' gutterBottom> {
                     post.message
                 }</Typography>
               

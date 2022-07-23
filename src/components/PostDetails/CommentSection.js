@@ -12,7 +12,7 @@ const CommentSection = ({ post }) => {
     const [comments, setComments] = useState([post?.comments]);
     const classes = useStyles();
     const commentsRef=useRef();
-    // console.log(comments);
+    console.log(comments);
   
    
 
@@ -41,8 +41,8 @@ console.log(comments);
                     {comments.length>0 &&
                        <>   {comments?.map((c, i) => (
                         <Typography key={i} gutterBottom variant="subtitle1">
-                          <strong>{c?.toString().split(":")[0]} </strong>
-                          {c?.toString().split(":")[1]}
+                          <strong>{c?.toString().split(": ")[0]} </strong>
+                          {c?.toString().split(": ")[1]}
                         </Typography>
                         ))}
                         </>

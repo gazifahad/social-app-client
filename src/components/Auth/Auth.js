@@ -45,6 +45,7 @@ const Auth = () => {
     };
    const handleGoogleLogin=async(user)=>{
     await signInWithGoogle();
+    window.location.reload();
   
     }
     if(user){
@@ -58,6 +59,7 @@ const Auth = () => {
           dispatch({type: "AUTH", data: {result,token}});
           
           navigate('/');
+          window.location.reload();
        } catch (error) {
            console.log(error);
        }
