@@ -8,7 +8,7 @@ try {
    navigate('/');
    window.location.reload();
 } catch (error) {
-    console.log(error);
+    alert(error.response.data.message);
 }
 }
 export const signup=(formData,navigate)=>async (dispatch)=>{
@@ -18,6 +18,6 @@ try {
   navigate('/')
   
 } catch (error) {
-    console.log(error?.response?.data);
+  alert(error.response.data.message);
 }
 }
