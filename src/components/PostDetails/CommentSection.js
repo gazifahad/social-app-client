@@ -29,7 +29,7 @@ const CommentSection = ({ post }) => {
     };
     
 // comments.map((c)=>console.log( "type of c is",typeof(c).toString()) );
-console.log(comments);
+// console.log(comments);
 
     return (
         <div>

@@ -16,6 +16,7 @@ try {
   const {data}=await api.signUp(formData);
   dispatch({type:AUTH,data})
   navigate('/')
+  window.location.reload();
   
 } catch (error) {
   alert(error.response.data.message);
